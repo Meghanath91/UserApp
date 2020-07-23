@@ -20,15 +20,13 @@ const validationSchema = Yup.object().shape({
 });
 
 export default function RegisterScreen() {
-  const [imageUri, setImageUri] = useState();
+  // const [imageUri, setImageUri] = useState();
   return (
     <Screen style={styles.container}>
       <Image style={styles.logo} source={require("../assets/logo.png")} />
       <AppForm
         initialValues={{ email: "", password: "", address: "", images: [] }}
-        onSubmit={(values, imageUri) =>
-          console.log(values, imageUri.setFieldValue())
-        }
+        onSubmit={(values) => console.log(values)}
         validationSchema={validationSchema}
       >
         <AppFormField

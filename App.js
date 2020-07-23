@@ -7,7 +7,11 @@ import AuthNavigator from "./app/navigation/AuthNavigator";
 import AppNavigator from "./app/navigation/AppNavigator";
 import { NavigationContainer } from "@react-navigation/native";
 import RegisterScreen from "./app/screens/RegisterScreen";
-
+import navigationTheme from "./app/navigation/navigationTheme";
 export default function App() {
-  return <RegisterScreen />;
+  return (
+    <NavigationContainer theme={navigationTheme}>
+      <AuthNavigator />
+    </NavigationContainer>
+  );
 }
