@@ -44,7 +44,7 @@ export default function RegisterScreen() {
           auotoCorrect={false}
           icon="lock"
           name="password"
-          placeholder="****"
+          placeholder="password"
           secureTextEntry
           textContentType="password"
         />
