@@ -20,7 +20,6 @@ export default function LocationDetailsScreen() {
           coordinate={{ latitude: 37.78825, longitude: -122.4324 }}
           pinColor={colors.primary} // any color
           title={"2233 eglinton"}
-          description={"description"}
         />
       </MapView>
     </View>
