@@ -28,5 +28,3 @@ export default function FormImagePicker({ name }) {
     </>
   );
 }
-
-const styles = StyleSheet.create({});

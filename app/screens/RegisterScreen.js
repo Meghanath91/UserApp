@@ -1,5 +1,5 @@
-import React from "react";
-import { StyleSheet, Image } from "react-native";
+import React, { useState } from "react";
+import { StyleSheet, Image, View } from "react-native";
 
 import * as Yup from "yup";
 
@@ -7,8 +7,8 @@ import AppForm from "../components/forms/AppForm";
 import AppFormField from "../components/forms/AppFormField";
 import Screen from "../components/Screen";
 import SubmitButton from "../components/forms/SubmitButton";
-// import ImageInput from "../components/ImageInput";
-// import AppText from "../components/AppText";
+import ImageInput from "../components/ImageInput";
+import AppText from "../components/AppText";
 import colors from "../config/colors";
 import FormImagePicker from "../components/forms/FormImagePicker";
 
@@ -16,17 +16,19 @@ const validationSchema = Yup.object().shape({
   email: Yup.string().required().email().label("Email"),
   password: Yup.string().required().min(4).label("Password"),
   address: Yup.string().required().label("Address"),
-  images: Yup.array().min(1, "please add a profile pic"),
+  // images: Yup.array().min(1, "please add a profile pic"),
 });
 
 export default function RegisterScreen() {
-  // const [imageUri, setImageUri] = useState();
+  const [imageUri, setImageUri] = useState();
   return (
     <Screen style={styles.container}>
       <Image style={styles.logo} source={require("../assets/logo.png")} />
       <AppForm
         initialValues={{ email: "", password: "", address: "", images: [] }}
-        onSubmit={(values) => console.log(values)}
+        onSubmit={(values, imageUri) =>
+          console.log(values, imageUri.setFieldValue())
+        }
         validationSchema={validationSchema}
       >
         <AppFormField
