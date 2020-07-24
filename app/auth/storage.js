@@ -27,4 +27,4 @@ const removeToken = async () => {
     console.log("Error removing the auth token");
   }
 };
-export default { getUser, removeToken, storeToken };
+export default { getToken, getUser, removeToken, storeToken };

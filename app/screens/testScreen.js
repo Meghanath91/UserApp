@@ -1,21 +1,22 @@
 import React, { useState } from "react";
-import { StyleSheet, Image, View } from "react-native";
-
+import { StyleSheet, View, Image } from "react-native";
 import * as Yup from "yup";
-import ErrorMessage from "../components/forms/ErrorMessage";
-import AppForm from "../components/forms/AppForm";
-import AppFormField from "../components/forms/AppFormField";
+
 import Screen from "../components/Screen";
-import SubmitButton from "../components/forms/SubmitButton";
-
-import AppText from "../components/AppText";
-import colors from "../config/colors";
-import FormImagePicker from "../components/forms/FormImagePicker";
-
-import useApi from "../hooks/useApi";
 import usersApi from "../api/users";
 import authApi from "../api/auth";
 import useAuth from "../hooks/useAuth";
+import colors from "../config/colors";
+import {
+  ErrorMessage,
+  AppForm,
+  AppFormField,
+  SubmitButton,
+  FormImagePicker,
+} from "../components/forms";
+import AppText from "../components/AppText";
+import useApi from "../hooks/useApi";
+// import ActivityIndicator from "../components/ActivityIndicator";
 
 const validationSchema = Yup.object().shape({
   email: Yup.string().required().email().label("Email"),
@@ -29,8 +30,10 @@ export default function RegisterScreen() {
   const loginApi = useApi(authApi.login);
   const auth = useAuth();
   const [error, setError] = useState();
+
   const handleSubmit = async (userInfo) => {
     const result = await registerApi.request(userInfo);
+
     if (!result.ok) {
       if (result.data) setError(result.data.error);
       else {
@@ -40,18 +43,20 @@ export default function RegisterScreen() {
       return;
     }
 
-    const { data: authToken } = await loginApi.request(email, password);
+    const { data: authToken } = await loginApi.request(
+      userInfo.email,
+      userInfo.password
+    );
     auth.logIn(authToken);
   };
   return (
     <Screen style={styles.container}>
       <Image style={styles.logo} source={require("../assets/logo.png")} />
       <AppForm
-        initialValues={{ email: "", password: "", address: "", images: [] }}
+        initialValues={{ email: "", password: "", address: "" }}
         onSubmit={handleSubmit}
         validationSchema={validationSchema}
       >
-        <ErrorMessage error={error} visible={error} />
         <AppFormField
           autoCapitalize="none"
           autoCorrect={false}
@@ -78,10 +83,10 @@ export default function RegisterScreen() {
           name="address"
           placeholder="Address"
         />
-        <View style={styles.uploadContainer}>
+        {/* <View style={styles.uploadContainer}>
           <AppText style={styles.text}>Upload Profile Picture</AppText>
           <FormImagePicker name="images" />
-        </View>
+        </View> */}
         <SubmitButton title="REGISTER" />
       </AppForm>
     </Screen>

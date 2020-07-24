@@ -4,7 +4,7 @@ import { View, Image, StyleSheet } from "react-native";
 import AppText from "../components/AppText";
 import colors from "../config/colors";
 import AppButton from "../components/AppButton";
-// import authStorage from "../auth/storage";
+
 import useAuth from "../hooks/useAuth";
 function UserDetailsScreen() {
   const { user, logOut } = useAuth();
@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
   title: {
     alignSelf: "center",
     fontWeight: "700",
-    fontSize: 30,
+    fontSize: 15,
     color: colors.primary,
   },
   logout: {

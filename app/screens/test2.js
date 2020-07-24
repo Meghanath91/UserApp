@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { StyleSheet, Image, View } from "react-native";
 
 import * as Yup from "yup";
-import ErrorMessage from "../components/forms/ErrorMessage";
+
 import AppForm from "../components/forms/AppForm";
 import AppFormField from "../components/forms/AppFormField";
 import Screen from "../components/Screen";
@@ -21,7 +21,7 @@ const validationSchema = Yup.object().shape({
   email: Yup.string().required().email().label("Email"),
   password: Yup.string().required().min(4).label("Password"),
   address: Yup.string().required().label("Address"),
-  // images: Yup.array().min(1, "please add a profile pic"),
+  images: Yup.array().min(1, "please add a profile pic"),
 });
 
 export default function RegisterScreen() {
@@ -29,8 +29,9 @@ export default function RegisterScreen() {
   const loginApi = useApi(authApi.login);
   const auth = useAuth();
   const [error, setError] = useState();
-  const handleSubmit = async (userInfo) => {
-    const result = await registerApi.request(userInfo);
+  const handleSubmit = async () => {
+    console.log("result");
+    const result = await registerApi.request(email, password, address);
     if (!result.ok) {
       if (result.data) setError(result.data.error);
       else {
@@ -51,7 +52,6 @@ export default function RegisterScreen() {
         onSubmit={handleSubmit}
         validationSchema={validationSchema}
       >
-        <ErrorMessage error={error} visible={error} />
         <AppFormField
           autoCapitalize="none"
           autoCorrect={false}
@@ -78,10 +78,10 @@ export default function RegisterScreen() {
           name="address"
           placeholder="Address"
         />
-        <View style={styles.uploadContainer}>
+        {/* <View style={styles.uploadContainer}>
           <AppText style={styles.text}>Upload Profile Picture</AppText>
           <FormImagePicker name="images" />
-        </View>
+        </View> */}
         <SubmitButton title="REGISTER" />
       </AppForm>
     </Screen>
