@@ -18,6 +18,7 @@
 // export default {
 //   addUser,
 // };
+//handling Register/POST request
 import client from "./client";
 const register = (userInfo) => client.post("/users", userInfo);
 export default { register };

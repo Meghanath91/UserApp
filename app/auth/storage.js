@@ -1,6 +1,10 @@
+//to encrypt and store authTokens
 import * as SecureStore from "expo-secure-store";
+//to decode JWT token
 import jwtDecode from "jwt-decode";
+
 const key = "authToken";
+
 const storeToken = async (authToken) => {
   try {
     await SecureStore.setItemAsync(key, authToken);
@@ -8,6 +12,7 @@ const storeToken = async (authToken) => {
     console.log("Error storing the auth token", error);
   }
 };
+
 const getToken = async () => {
   try {
     return await SecureStore.getItemAsync(key);
@@ -27,4 +32,5 @@ const removeToken = async () => {
     console.log("Error removing the auth token");
   }
 };
+
 export default { getToken, getUser, removeToken, storeToken };
