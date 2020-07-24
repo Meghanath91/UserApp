@@ -1,8 +1,31 @@
-# UserApp-front-end
+# UserApp
 
-1. install node versions > 12.16 ()
-2. To install project dependencies : npm install and npm install -g expo-cli
-3. Then expo init userApp and choose blank workflow
-4. Download and install Expo client on phone to test the app in real device(ios&android)
-5. To run front-end , please go to api directory and open client.js and change IP address to your local machine's IP address eg:<192.168.2.23>
-6. To start server npm start
+A simple React Native application that allows the User to register with photo upload and address. UI will render with avatar and geocoded location.
+
+## Screenshots
+
+!["welcome Screen"](https://github.com/TylerZhang00/LighthouseEats/blob/master/docs/Main%20Page.png?raw=true)
+
+!["Login Screen"](https://github.com/TylerZhang00/LighthouseEats/blob/master/docs/Order%20Summary%20Page.png?raw=true)
+
+!["Register screen"](https://github.com/TylerZhang00/LighthouseEats/blob/master/docs/Title%20Page.png?raw=true)
+
+!["Account screen"](https://github.com/TylerZhang00/LighthouseEats/blob/master/docs/Title%20Page.png?raw=true)
+
+!["Location screen"](https://github.com/TylerZhang00/LighthouseEats/blob/master/docs/Title%20Page.png?raw=true)
+
+## Setup
+
+Install dependencies with `npm install`
+
+## Running Server
+
+`npm start` and visit `http://localhost:8080/home`
+
+## Dependencies
+
+- Node 10.x or above
+- express 4.x
+- PG 6.x
+- jQuery
+- Twilio
