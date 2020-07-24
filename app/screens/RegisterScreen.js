@@ -16,11 +16,10 @@ const validationSchema = Yup.object().shape({
   email: Yup.string().required().email().label("Email"),
   password: Yup.string().required().min(4).label("Password"),
   address: Yup.string().required().label("Address"),
-  // images: Yup.array().min(1, "please add a profile pic"),
+  images: Yup.array().min(1, "please add a profile pic"),
 });
 
 export default function RegisterScreen() {
-  // const [imageUri, setImageUri] = useState();
   return (
     <Screen style={styles.container}>
       <Image style={styles.logo} source={require("../assets/logo.png")} />
@@ -52,19 +51,13 @@ export default function RegisterScreen() {
           autoCapitalize="none"
           autoCorrect={false}
           icon="home-map-marker"
-          // keyboardType="address"
           name="address"
           placeholder="Address"
-          // textContentType="address"
         />
-        <FormImagePicker name="images" />
-        {/* <View style={styles.uploadContainer}>
+        <View style={styles.uploadContainer}>
           <AppText style={styles.text}>Upload Profile Picture</AppText>
-          <ImageInput
-            imageUri={imageUri}
-            onChangeImage={(uri) => setImageUri(uri)}
-          />
-        </View> */}
+          <FormImagePicker name="images" />
+        </View>
         <SubmitButton title="REGISTER" />
       </AppForm>
     </Screen>
@@ -78,8 +71,7 @@ const styles = StyleSheet.create({
     width: 80,
     height: 80,
     alignSelf: "center",
-    marginTop: 40,
-    marginBottom: 20,
+    marginBottom: 5,
   },
   uploadContainer: {
     marginVertical: 10,

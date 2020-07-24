@@ -16,7 +16,9 @@ export default function ImageInputList({
           onChangeImage={() => onRemoveImage(uri)}
         />
       ))}
-      <ImageInput onChangeImage={(uri) => onAddImage(uri)} />
+      {imageUris.length === 1 ? null : (
+        <ImageInput onChangeImage={(uri) => onAddImage(uri)} />
+      )}
     </View>
   );
 }
