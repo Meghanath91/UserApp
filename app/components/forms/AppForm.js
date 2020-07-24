@@ -1,5 +1,5 @@
 import React from "react";
-import { Formik } from "formik";
+import { Formik } from "formik"; //to handle form validation and submission
 
 export default function AppForm({
   initialValues,

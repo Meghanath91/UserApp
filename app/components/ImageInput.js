@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import {
   Alert,
   StyleSheet,
-  Text,
   View,
   Image,
   TouchableWithoutFeedback,
@@ -10,16 +9,19 @@ import {
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import * as ImagePicker from "expo-image-picker";
 import colors from "../config/colors";
+
 const qualityOfImage = 0.5;
+//to handle image input
 export default function ImageInput({ imageUri, onChangeImage }) {
   useEffect(() => {
     requestPermission();
   }, []);
-
+  //since we can't use async inside the useEffect define it outside and pass in function
   const requestPermission = async () => {
-    const { granted } = await ImagePicker.requestCameraPermissionsAsync();
+    const { granted } = await ImagePicker.requestCameraPermissionsAsync(); //to handle permissions to access features
     if (!granted) alert("You need to enable permission to access your library");
   };
+  //to handle press event
   const handlePress = () => {
     if (!imageUri) selectImage();
     else
@@ -28,6 +30,7 @@ export default function ImageInput({ imageUri, onChangeImage }) {
         { text: "No" },
       ]);
   };
+  //to select image
   const selectImage = async () => {
     try {
       const result = await ImagePicker.launchImageLibraryAsync({

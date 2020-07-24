@@ -1,18 +1,18 @@
 import React from "react";
-import { View, Image, StyleSheet } from "react-native";
+import { Image, StyleSheet, View } from "react-native";
 
+import AppButton from "../components/AppButton";
 import AppText from "../components/AppText";
 import colors from "../config/colors";
-import AppButton from "../components/AppButton";
-
 import useAuth from "../hooks/useAuth";
+
+//render username and profile pic
 function UserDetailsScreen() {
   const { user, logOut } = useAuth();
 
   return (
     <View style={styles.container}>
       <Image style={styles.image} source={{ uri: user.image }} />
-
       <View>
         <AppText style={styles.title}>{user.email}</AppText>
       </View>

@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+//to handle error and loading events
 export default useApi = (apiFunc) => {
   const [data, setData] = useState([]);
   const [error, setError] = useState(false);

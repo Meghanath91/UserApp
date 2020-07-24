@@ -1,46 +1,50 @@
 import React, { useState } from "react";
 import { StyleSheet, Image, View } from "react-native";
+import * as Yup from "yup"; //form validation
 
-import * as Yup from "yup";
-import ErrorMessage from "../components/forms/ErrorMessage";
-import AppForm from "../components/forms/AppForm";
-import AppFormField from "../components/forms/AppFormField";
-import Screen from "../components/Screen";
-import SubmitButton from "../components/forms/SubmitButton";
+import {
+  AppForm,
+  AppFormField,
+  ErrorMessage,
+  SubmitButton,
+} from "../components/forms";
 
 import AppText from "../components/AppText";
 import colors from "../config/colors";
 import FormImagePicker from "../components/forms/FormImagePicker";
+import Screen from "../components/Screen";
 
 import useApi from "../hooks/useApi";
 import usersApi from "../api/users";
 import authApi from "../api/auth";
 import useAuth from "../hooks/useAuth";
 
+//input validation
 const validationSchema = Yup.object().shape({
   email: Yup.string().required().email().label("Email"),
   password: Yup.string().required().min(4).label("Password"),
   address: Yup.string().required().label("Address"),
-  // images: Yup.array().min(1, "please add a profile pic"),
+  images: Yup.array().min(1, "please add a profile pic"),
 });
 
 export default function RegisterScreen() {
-  const registerApi = useApi(usersApi.register);
-  const loginApi = useApi(authApi.login);
   const auth = useAuth();
   const [error, setError] = useState();
+  const loginApi = useApi(authApi.login);
+  const registerApi = useApi(usersApi.register);
+
+  //handle form submission
   const handleSubmit = async (userInfo) => {
-    const result = await registerApi.request(userInfo);
+    const result = await registerApi.request(userInfo); //to handle POST request
     if (!result.ok) {
       if (result.data) setError(result.data.error);
       else {
         setError("An unexpected error occurred.");
-        console.log(result);
       }
       return;
     }
 
-    const { data: authToken } = await loginApi.request(email, password);
+    const { data: authToken } = await loginApi.request(email, password); //to handle redirect
     auth.logIn(authToken);
   };
   return (

@@ -1,9 +1,11 @@
 import React from "react";
 import { StyleSheet, View } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+
 import { TextInput } from "react-native-gesture-handler";
 import defaultStyles from "../config/styles";
 
+//custom text input component
 export default function AppTextInput({ icon, ...otherProps }) {
   return (
     <View style={styles.container}>

@@ -5,9 +5,11 @@ import ErrorMessage from "../forms/ErrorMessage";
 import { useFormikContext } from "formik";
 import ImageInputList from "../ImageInputList";
 
+//form image picker
 export default function FormImagePicker({ name }) {
   const { errors, setFieldValue, touched, values } = useFormikContext();
   const imageUris = values[name];
+
   const handleAdd = (uri) => {
     setFieldValue(name, [...imageUris, uri]);
   };

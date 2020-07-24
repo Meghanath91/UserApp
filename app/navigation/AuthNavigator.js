@@ -1,10 +1,14 @@
 import React from "react";
-import WelcomeScreen from "../screens/WelcomeScreen";
+import { createStackNavigator } from "@react-navigation/stack";
+
+import routes from "./routes";
+
 import LoginScreen from "../screens/LoginScreen";
 import RegisterScreen from "../screens/RegisterScreen";
-import { createStackNavigator } from "@react-navigation/stack";
-import routes from "./routes";
+import WelcomeScreen from "../screens/WelcomeScreen";
+//to handle screen navigations
 const Stack = createStackNavigator();
+//to navigate according to auth status,
 const AuthNavigator = () => (
   <Stack.Navigator>
     <Stack.Screen

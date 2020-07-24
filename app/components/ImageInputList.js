@@ -1,7 +1,8 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
-import ImageInput from "./ImageInput";
+import { StyleSheet, View } from "react-native";
 
+import ImageInput from "./ImageInput";
+//to habdle delete and add image
 export default function ImageInputList({
   imageUris = [],
   onRemoveImage,
