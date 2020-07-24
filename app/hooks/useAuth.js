@@ -1,7 +1,13 @@
 import { useContext } from "react";
-import AuthContext from "./context";
+import AuthContext from "../auth/context";
+import authStorage from "../auth/storage";
 
 export default useAuth = () => {
   const { user, setUser } = useContext(AuthContext);
-  return { user, setUser };
+
+  const logOut = () => {
+    setUser(null);
+    authStorage.removeToken();
+  };
+  return { user, logOut };
 };

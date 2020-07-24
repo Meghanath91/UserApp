@@ -4,14 +4,10 @@ import { View, Image, StyleSheet } from "react-native";
 import AppText from "../components/AppText";
 import colors from "../config/colors";
 import AppButton from "../components/AppButton";
-import authStorage from "../auth/storage";
+// import authStorage from "../auth/storage";
 import useAuth from "../hooks/useAuth";
 function UserDetailsScreen() {
-  const { user, setUser } = useAuth;
-  const handleLogOut = () => {
-    setUser(null);
-    authStorage.removeToken();
-  };
+  const { user, logOut } = useAuth();
 
   return (
     <View style={styles.container}>
@@ -21,7 +17,7 @@ function UserDetailsScreen() {
         <AppText style={styles.title}>{user.email}</AppText>
       </View>
       <View style={styles.logout}>
-        <AppButton title="LOGOUT" onPress={handleLogOut} />
+        <AppButton title="LOGOUT" onPress={logOut} />
       </View>
     </View>
   );
