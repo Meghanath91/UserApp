@@ -1,19 +1,18 @@
-import React from "react";
+import React, { useContext } from "react";
 import { View, Image, StyleSheet } from "react-native";
-
+import AuthContext from "../auth/context";
 import AppText from "../components/AppText";
 import colors from "../config/colors";
 
-function UserDetailsScreen({ userName, image }) {
+function UserDetailsScreen() {
+  const { user } = useContext(AuthContext);
+  console.log(user.image);
   return (
     <View style={styles.container}>
-      <Image
-        style={styles.image}
-        source={require("../assets/profile-pic.jpg")}
-      />
+      <Image style={styles.image} source={{ uri: user.image }} />
 
       <View>
-        <AppText style={styles.title}>Meghanath</AppText>
+        <AppText style={styles.title}>{user.email}</AppText>
       </View>
     </View>
   );

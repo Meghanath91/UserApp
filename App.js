@@ -1,17 +1,19 @@
-import React from "react";
-import WelcomeScreen from "./app/screens/WelcomeScreen";
-import LoginScreen from "./app/screens/LoginScreen";
+import React, { useState } from "react";
 
-import LocationDetailsScreen from "./app/screens/LocationDetailsScreen";
 import AuthNavigator from "./app/navigation/AuthNavigator";
 import AppNavigator from "./app/navigation/AppNavigator";
 import { NavigationContainer } from "@react-navigation/native";
-import RegisterScreen from "./app/screens/RegisterScreen";
+
 import navigationTheme from "./app/navigation/navigationTheme";
+import AuthContext from "./app/auth/context";
+
 export default function App() {
+  const [user, setUser] = useState();
   return (
-    <NavigationContainer theme={navigationTheme}>
-      <AuthNavigator />
-    </NavigationContainer>
+    <AuthContext.Provider value={{ user, setUser }}>
+      <NavigationContainer theme={navigationTheme}>
+        {user ? <AppNavigator /> : <AuthNavigator />}
+      </NavigationContainer>
+    </AuthContext.Provider>
   );
 }
