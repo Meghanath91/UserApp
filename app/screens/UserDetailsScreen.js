@@ -1,13 +1,18 @@
-import React, { useContext } from "react";
+import React from "react";
 import { View, Image, StyleSheet } from "react-native";
-import AuthContext from "../auth/context";
+
 import AppText from "../components/AppText";
 import colors from "../config/colors";
 import AppButton from "../components/AppButton";
-
+import authStorage from "../auth/storage";
+import useAuth from "../hooks/useAuth";
 function UserDetailsScreen() {
-  const { user, setUser } = useContext(AuthContext);
-  console.log(user.image);
+  const { user, setUser } = useAuth;
+  const handleLogOut = () => {
+    setUser(null);
+    authStorage.removeToken();
+  };
+
   return (
     <View style={styles.container}>
       <Image style={styles.image} source={{ uri: user.image }} />
@@ -16,7 +21,7 @@ function UserDetailsScreen() {
         <AppText style={styles.title}>{user.email}</AppText>
       </View>
       <View style={styles.logout}>
-        <AppButton title="LOGOUT" onPress={() => setUser(null)} />
+        <AppButton title="LOGOUT" onPress={handleLogOut} />
       </View>
     </View>
   );

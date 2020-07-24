@@ -71,7 +71,8 @@ const styles = StyleSheet.create({
     width: 80,
     height: 80,
     alignSelf: "center",
-    marginBottom: 5,
+    marginBottom: 10,
+    marginTop: 10,
   },
   uploadContainer: {
     marginVertical: 10,
